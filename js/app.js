@@ -22,9 +22,10 @@ function mostarLT() {
     tarlt.classList.add("ltarea");
     tareas.forEach(tarea => {
         const estaTildado = tarea.completada ? "checked" : "";
+        const claseTachada = tarea.completada ? "tachado" : "";
         tarlt.innerHTML += `
         <input type="checkbox" name="marcar-tarea" class="m-tarea" ${estaTildado}>
-        ${tarea.id}
+        <span class="${claseTachada}">${tarea.id}</span>
         <button class="eliminar">ELIMINAR</button>
         `
     });

@@ -27,16 +27,14 @@ function eliminar(id) {
 
 function marca(id, estaCompleta) {  
     let tareas = cargarTarea();
-
     tareas = tareas.map(tarea => {
     if (tarea.id === id) {
-        //tarea.completada = true;
         tarea.completada = estaCompleta;
     }
     return tarea;
     });
 
     guardarTarea(tareas)
-    
+    mostarLT();
 }
 
