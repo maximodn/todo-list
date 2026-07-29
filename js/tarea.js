@@ -5,10 +5,19 @@ function agregar() {
 
         const tarea = cargarTarea();
         tarea.push({
-            id: valor
+            id: valor,
+            completada: false
         });
         guardarTarea(tarea);
 
         mostarLT();
         mostrarT();
+}
+
+function eliminar(id) {
+    let tarea = cargarTarea();
+    tarea = tarea.filter(tarea => tarea.id !== id);
+    guardarTarea(tarea);
+
+    mostarLT();
 }

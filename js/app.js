@@ -9,8 +9,8 @@ function mostrarT() {
     `
     t.appendChild(tart);
 
-    const boton = tart.querySelector("#agregar");
-    boton.addEventListener('click', () => agregar());
+    const botonAdd = tart.querySelector("#agregar");
+    botonAdd.addEventListener('click', () => agregar());
 }
 
 function mostarLT() {
@@ -23,14 +23,22 @@ function mostarLT() {
         tarlt.innerHTML += `
         <input type="checkbox" name="marcar-tarea" id="m-tarea">
         ${tarea.id}
-        <button id="eliminar">ELIMINAR</button>
+        <button class="eliminar">ELIMINAR</button>
         `
     });
 
+    const botonDel = tarlt.querySelectorAll(".eliminar");
+    botonDel.forEach((boton, indice) => {
+        boton.addEventListener('click', () => {
+            eliminar(tarea[indice].id);
+        });
+    });
+
     lt.appendChild(tarlt);
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    mostrarT();
     mostarLT();
+    mostrarT();
 });
