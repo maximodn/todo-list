@@ -1,13 +1,16 @@
 function agregar() {
         const input = document.getElementById("n-tarea");
         const valor = input.value;
-        console.log(valor);
-
         const tarea = cargarTarea();
-        tarea.push({
+
+        if (valor.length !== 0) {
+            tarea.push({
             id: valor,
             completada: false
-        });
+            });
+        } else {
+            alert("No se permiten tareas vacias")
+        }
         guardarTarea(tarea);
 
         mostarLT();
@@ -21,3 +24,19 @@ function eliminar(id) {
 
     mostarLT();
 }
+
+function marca(id, estaCompleta) {  
+    let tareas = cargarTarea();
+
+    tareas = tareas.map(tarea => {
+    if (tarea.id === id) {
+        //tarea.completada = true;
+        tarea.completada = estaCompleta;
+    }
+    return tarea;
+    });
+
+    guardarTarea(tareas)
+    
+}
+

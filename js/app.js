@@ -11,17 +11,19 @@ function mostrarT() {
 
     const botonAdd = tart.querySelector("#agregar");
     botonAdd.addEventListener('click', () => agregar());
+
 }
 
 function mostarLT() {
-    const tarea = cargarTarea();
+    const tareas = cargarTarea();
     const lt = document.getElementById("lt");
     lt.innerHTML = "";
     const tarlt = document.createElement("div");
     tarlt.classList.add("ltarea");
-    tarea.forEach(tarea => {
+    tareas.forEach(tarea => {
+        const estaTildado = tarea.completada ? "checked" : "";
         tarlt.innerHTML += `
-        <input type="checkbox" name="marcar-tarea" id="m-tarea">
+        <input type="checkbox" name="marcar-tarea" class="m-tarea" ${estaTildado}>
         ${tarea.id}
         <button class="eliminar">ELIMINAR</button>
         `
@@ -30,8 +32,13 @@ function mostarLT() {
     const botonDel = tarlt.querySelectorAll(".eliminar");
     botonDel.forEach((boton, indice) => {
         boton.addEventListener('click', () => {
-            eliminar(tarea[indice].id);
+            eliminar(tareas[indice].id);
         });
+    });
+
+    const checkb = tarlt.querySelectorAll(".m-tarea");
+    checkb.forEach((check, indice) => {
+        check.addEventListener("change", (e) => marca(tareas[indice].id, e.target.checked));
     });
 
     lt.appendChild(tarlt);
