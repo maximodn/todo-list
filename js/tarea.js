@@ -4,6 +4,11 @@ function agregar() {
         console.log(valor);
 
         const tarea = cargarTarea();
-        tarea.push(valor);
+        tarea.push({
+            id: valor
+        });
         guardarTarea(tarea);
+
+        mostarLT();
+        mostrarT();
 }

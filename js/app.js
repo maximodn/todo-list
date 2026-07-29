@@ -19,6 +19,15 @@ function mostarLT() {
     lt.innerHTML = "";
     const tarlt = document.createElement("div");
     tarlt.classList.add("ltarea");
+    tarea.forEach(tarea => {
+        tarlt.innerHTML += `
+        <input type="checkbox" name="marcar-tarea" id="m-tarea">
+        ${tarea.id}
+        <button id="eliminar">ELIMINAR</button>
+        `
+    });
+
+    lt.appendChild(tarlt);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
