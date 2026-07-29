@@ -2,14 +2,16 @@ function agregar() {
         const input = document.getElementById("n-tarea");
         const valor = input.value;
         const tarea = cargarTarea();
+        const valorLimpio = valor.trim();
 
-        if (valor.length !== 0) {
+        if (valorLimpio.length !== 0) {
             tarea.push({
             id: valor,
             completada: false
             });
+            mostrarMensaje(`Tarea agregada con exito.`);
         } else {
-            alert("No se permiten tareas vacias")
+            mostrarMensaje(`NO se puede agregar una tarea vacia.`);
         }
         guardarTarea(tarea);
 
@@ -21,7 +23,7 @@ function eliminar(id) {
     let tarea = cargarTarea();
     tarea = tarea.filter(tarea => tarea.id !== id);
     guardarTarea(tarea);
-
+    mostrarMensaje(`Tarea eliminada con exito.`);
     mostarLT();
 }
 
@@ -30,7 +32,11 @@ function marca(id, estaCompleta) {
     tareas = tareas.map(tarea => {
     if (tarea.id === id) {
         tarea.completada = estaCompleta;
+        
     }
+    if (estaCompleta) {
+            mostrarMensaje(`Tarea ${tarea.id} fue completada.`);
+        }
     return tarea;
     });
 
@@ -38,3 +44,11 @@ function marca(id, estaCompleta) {
     mostarLT();
 }
 
+function mostrarMensaje(texto) {
+    const mensaje = document.getElementById("mensaje-flotante");
+    mensaje.textContent = texto;
+    mensaje.classList.add("mensaje-flotante-visible");
+    setTimeout(() => {
+    mensaje.classList.remove("mensaje-flotante-visible");
+    }, 1500);
+}
